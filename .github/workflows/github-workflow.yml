@@ -19,8 +19,8 @@ jobs:
       - name: Install dad-jokes package globally
         run: npm install --global @mikemcbride/dad-jokes
 
-      - name: Display a dad joke and write it to a text file
-        run: |
-          joke=$(dadjoke)
-          echo "$joke" > dad-joke.txt
-          cat dad-joke.txt
+      - name: Display a dad joke
+        run: dad-jokes
+
+        - name: Save joke to file
+          run: dad-jokes > joke.txt
