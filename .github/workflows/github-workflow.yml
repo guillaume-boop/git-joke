@@ -16,7 +16,7 @@ then
 fi
 
 
-echo "Node.js version installée : $(node -v)"
+
 
 echo "Installation de @mikemcbride/dad-jokes..."
 npm install --global @mikemcbride/dad-jokes
