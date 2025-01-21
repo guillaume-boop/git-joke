@@ -30,3 +30,14 @@ jobs:
 
       - name: Display joke
         run: cat joke.txt
+
+
+    - name: Checkout and push to existing branch 'blague'
+        run: |
+          git config --global user.email "guillaume.alameda@gmail.com"
+          git config --global user.name "Guillaume"
+
+          git checkout blague 
+          git add joke.txt 
+          git commit -m "Ajout de la blague dans joke.txt"
+          git push origin blague
