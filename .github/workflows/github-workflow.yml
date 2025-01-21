@@ -26,7 +26,7 @@ jobs:
         run: joke=$(dadjoke)
 
       - name: Write joke to file
-          echo "$joke" > joke.txt
+        run: echo "$joke" > joke.txt
 
       - name: Display joke
-          cat joke.txt
+        run: cat joke.txt
