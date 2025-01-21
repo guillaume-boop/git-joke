@@ -32,12 +32,19 @@ jobs:
         run: cat joke.txt
 
 
-    - name: Checkout and push to existing branch 'blague'
+ - name: Configure Git user
         run: |
-          git config --global user.email "guillaume.alameda@gmail.com"
-          git config --global user.name "Guillaume"
+          git config --global user.email "guillaume.alameda@gmail.com"  # Configurer l'email
+          git config --global user.name "Guillaume"  # Configurer le nom d'utilisateur Git
 
-          git checkout blague 
-          git add joke.txt 
-          git commit -m "Ajout de la blague dans joke.txt"
-          git push origin blague
+      - name: Checkout the 'blague' branch
+        run: git checkout blague  # Bascule sur la branche 'blague'
+
+      - name: Add joke.txt to staging
+        run: git add joke.txt  # Ajoute le fichier joke.txt à l'index
+
+      - name: Commit the joke file
+        run: git commit -m "Ajout de la blague dans joke.txt"  # Commit du fichier
+
+      - name: Push changes to 'blague' branch
+        run: git push origin blague  # Pousse les changements sur la branche 'blague'
