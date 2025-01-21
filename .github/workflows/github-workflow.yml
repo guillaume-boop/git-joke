@@ -22,10 +22,11 @@ jobs:
       - name: Display a dad joke
         run: dad-jokes
 
+      - name: Save joke to file
+        run: joke=$(dadjoke)
 
+      - name: Write joke to file
+          echo "$joke" > joke.txt
 
-          - name: Save joke to file
-        run: |
-          joke=$(dadjoke)  # Exécute la commande dadjoke et capture la sortie
-          echo "$joke" > joke.txt  # Écrit la blague dans un fichier texte
-          cat joke.txt  # Affiche le contenu du fichier pour vérifier
+      - name: Display joke
+          cat joke.txt
