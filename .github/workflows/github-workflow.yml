@@ -1,5 +1,5 @@
 #!/bin/bash
-if ! command -v node &> /dev/null
+if ! which node > /dev/null 2>&1
 then
     echo "Node.js n'est pas installé. Installation en cours..."
     
