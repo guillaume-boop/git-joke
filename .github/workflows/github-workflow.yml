@@ -1,33 +1,11 @@
 #!/bin/bash
-if ! which node > /dev/null 2>&1
-then
-    echo "Node.js n'est pas installé. Installation en cours..."
     
     sudo apt update
 
     curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
     sudo apt install -y nodejs
+    npm install --global @mikemcbride/dad-jokes
 
-    if ! command -v node &> /dev/null
-    then
-        echo "L'installation de Node.js a échoué."
-        exit 1
-    fi
-fi
-
-
-
-
-echo "Installation de @mikemcbride/dad-jokes..."
-npm install --global @mikemcbride/dad-jokes
-
-if npm list --global | grep -q "@mikemcbride/dad-jokes"
-then
-    echo "Le package @mikemcbride/dad-jokes a été installé avec succès !"
-else
-    echo "L'installation du package @mikemcbride/dad-jokes a échoué."
-    exit 1
-fi
-
-echo "Voici une blague pour vous :"
-dadjoke
+    if npm list --global | grep -q "@mikemcbride/dad-jokes"
+    
+    dadjoke
