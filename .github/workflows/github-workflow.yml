@@ -1,38 +1,23 @@
-name: Install Dad Jokes
+name: Node test
+run-name: ${{ github.actor }} We are testing Github Action with Node.js
 
-on:
-  push:
-    branches:
-      - main
+on: [push]
 
 jobs:
-  dad-jokes:
+  my-job:
     runs-on: ubuntu-latest
 
     steps:
-      # Vérifier le code
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-      # Installer Node.js
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
         with:
-          node-version: 18
+          node-version: "18"
 
-      # Installer le package @mikemcbride/dad-jokes
-      - name: Install Dad Jokes
-        run: |
-          npm install --global @mikemcbride/dad-jokes
+      - name: Install dad-jokes package globally
+        run: npm install --global @mikemcbride/dad-jokes
 
-      # Vérifier l'installation et exécuter une blague
-      - name: Test Dad Jokes
-        run: |
-          if npm list --global | grep -q "@mikemcbride/dad-jokes"; then
-            echo "Le package @mikemcbride/dad-jokes a été installé avec succès !"
-            dadjoke
-          else
-            echo "L'installation a échoué."
-            exit 1
-          fi
-
+      - name: Display a dad joke
+        run: dad-jokes
