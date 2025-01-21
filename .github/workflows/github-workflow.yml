@@ -22,29 +22,9 @@ jobs:
       - name: Display a dad joke
         run: dad-jokes
 
-      - name: Save joke to file
-        run: joke=$(dad-jokes)
-
       - name: Write joke to file
-        run: echo "$joke" > joke.txt
+        run: dad-jokes > jokes.txt && git config user.email "guillaume.alameda@gmail.com" && git config user.name "Guillaume" && git checkout -b blague && git add jokes.txt && git commit -m "Add joke" && git push origin dev
 
-      - name: Display joke
+      - name: Display joke        
         run: cat joke.txt
 
-
- - name: Configure Git user
-        run: |
-          git config --global user.email "guillaume.alameda@gmail.com"  # Configurer l'email
-          git config --global user.name "Guillaume"  # Configurer le nom d'utilisateur Git
-
-      - name: Checkout the 'blague' branch
-        run: git checkout blague  # Bascule sur la branche 'blague'
-
-      - name: Add joke.txt to staging
-        run: git add joke.txt  # Ajoute le fichier joke.txt à l'index
-
-      - name: Commit the joke file
-        run: git commit -m "Ajout de la blague dans joke.txt"  # Commit du fichier
-
-      - name: Push changes to 'blague' branch
-        run: git push origin blague  # Pousse les changements sur la branche 'blague'
