@@ -23,7 +23,7 @@ jobs:
         run: dad-jokes
 
       - name: Save joke to file
-        run: joke=$(dadjoke)
+        run: joke=$(dad-jokes)
 
       - name: Write joke to file
         run: echo "$joke" > joke.txt
