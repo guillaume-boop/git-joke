@@ -1,11 +1,38 @@
-#!/bin/bash
-    
-    sudo apt update
+name: Install Dad Jokes
 
-    curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
-    sudo apt install -y nodejs
-    npm install --global @mikemcbride/dad-jokes
+on:
+  push:
+    branches:
+      - main
 
-    if npm list --global | grep -q "@mikemcbride/dad-jokes"
-    
-    dadjoke
+jobs:
+  dad-jokes:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Vérifier le code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Installer Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      # Installer le package @mikemcbride/dad-jokes
+      - name: Install Dad Jokes
+        run: |
+          npm install --global @mikemcbride/dad-jokes
+
+      # Vérifier l'installation et exécuter une blague
+      - name: Test Dad Jokes
+        run: |
+          if npm list --global | grep -q "@mikemcbride/dad-jokes"; then
+            echo "Le package @mikemcbride/dad-jokes a été installé avec succès !"
+            dadjoke
+          else
+            echo "L'installation a échoué."
+            exit 1
+          fi
+
